@@ -43,7 +43,10 @@ time, mark, audio, video, .initial {
    background: initial;
    color: initial;
  }
-
+.entry-content img{
+  /* 銘柄の画像のマージンをリセット */
+  margin: initial;
+}
  h2 {
  	line-height: initial;
  	/* h2のfont-sizeが効かないので */
@@ -207,7 +210,7 @@ h2::first-letter {
   font-size: 2rem;
   cursor: pointer;
   margin: 0 auto;
-  /* width: 30rem; */
+  width: 25rem;
 }
 .crypto img{
   width: 25rem;
@@ -217,11 +220,14 @@ h2::first-letter {
   border-radius: 2rem;
 }
 .crypto-selected img{
-  margin: -4px !important
+  /* margin: -4px !important */
 }
 @media only screen and (max-width: 767px)  {
   .crypto img{
     width: 15rem;
+  }
+  .crypto{
+    width: initial;
   }
 }
 .transparent-crypto{
@@ -229,11 +235,12 @@ h2::first-letter {
 }
 .results{
   margin-top: 1rem;
-  /* width: 80rem; */
+  margin-bottom: 4rem;
 }
 .results p{
   font-size: 2rem;
   line-height: 168%;
+  margin: 0.6rem 0;
   display: inline-block;
 }
 .results a{
@@ -249,7 +256,7 @@ h2::first-letter {
   font-size: 1.6rem;
 }
 .description{
-  margin: 1rem 0 2rem 0;
+  margin: 1rem 0 4rem 0;
 
 }
 .description h3{
@@ -263,4 +270,61 @@ h2::first-letter {
 }
 .description img{
   width: 100vw;
+}
+
+
+/* Twitterボタン */
+#twitter{
+	margin: 2rem 0;
+  display: block;
+  width: 30rem;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 2rem 3rem;
+  border-radius: 0.5rem;
+  background-image: linear-gradient(-90deg, #2780db, #66a6e8);
+  transition: .5s;
+  background-size: 200%;
+	cursor: pointer;
+}
+@media only screen and (max-width: 767px)  {
+  #twitter{
+    width: 23rem;
+    margin-left: 0rem;
+    font-size: 1.3rem;
+    padding: 1.8rem;
+  }
+}
+
+/* ローディング表示 */
+#load-img{
+  /* 透明のままになっているのでそのうち直そう */
+  position: absolute;
+  position: fixed;
+  z-index: 20;
+  top: 50vh;
+  left: 43vw;
+}
+
+/* ///////////// */
+/* コインマーケットキャップ */
+/* ///////////// */
+.loading{
+  opacity: 0.4;
+}
+.now-price{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+ @media only screen and (max-width: 767px)  {
+ 	.now-price{
+      grid-template-columns: 1fr;
+   }
+}
+
+.coinmarketcap-currency-widget{
+	margin: 0.3rem 0.3rem 0 0;
 }

@@ -14,8 +14,9 @@
   <div class="initial">
     <h1>仮想通貨de送金手数料の計算機</h1>
     <div class="wrapper">
+    <div id="load-img"><img src="https://kusacurrency.com/wp-content/uploads/2019/05/gif-load.gif" /></div>
       <h2>取引所を選択する</h2>
-        <div class="contents exchanges">
+        <div class="contents exchanges loading" id="loading-crypts">
           <button class="exchange" id="bitbank" onclick="RenderBtn(id)">bitbank</button>
           <button class="exchange" id="bitFlyer" onclick="RenderBtn(id)">bitFlyer</button>
           <button class="exchange" id="bitpoint" onclick="RenderBtn(id)">BITPOINT</button>
@@ -42,8 +43,10 @@
             <p class="caution" id="caution1"></p>
             <p class="caution" id="caution2"></p>
             <p class="caution" id="xrp-caution"></p>
+            <p class="caution" id="liquid-caution"></p>
           </div>
           <a class="result" id="affiliate"></a>
+          <div id="twitter-btn"></div>
         </div>
       <h2>アプリダウンロード不要！ホーム画面に追加でいつでも使える♪</h2>
         <div class="description">
@@ -62,9 +65,9 @@
         <div class="coinmarketcap-currency-widget" data-currencyid="52" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
         <div class="coinmarketcap-currency-widget" data-currencyid="2" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
         <div class="coinmarketcap-currency-widget" data-currencyid="1831" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
-        <div class="coinmarketcap-currency-widget" data-currencyid="1321" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
         <div class="coinmarketcap-currency-widget" data-currencyid="873" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
         <div class="coinmarketcap-currency-widget" data-currencyid="213" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="1321" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
         <div class="coinmarketcap-currency-widget" data-currencyid="1214" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
         <div class="coinmarketcap-currency-widget" data-currencyid="1087" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
         <div class="coinmarketcap-currency-widget" data-currencyid="2213" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
@@ -73,27 +76,19 @@
   </div>
 </body>
 <script type="text/javascript">
-//再読み込み時のリセット
-document.getElementById('fee-transaction').innerHTML = '';
-document.getElementById('now-price').innerHTML = '';
-document.getElementById('jpy-price').innerHTML = '';
-document.getElementById('caution1').innerHTML = '';
-document.getElementById('caution2').innerHTML = '';
-document.getElementById('xrp-caution').innerHTML = '';
-document.getElementById('affiliate').innerHTML = '';
 
-//現在の価格を取得する
-const BTCprice = 900000;
-const ETHprice = 30000;
-const XRPprice = 40;
-const LTCprice = 10000;
-const BCHprice = 30000;
-const NEMprice = 10;
-const MONAprice = 120;
-const ETCprice = 15000;
-const LSKprice = 220;
-const FCTprice = 2000;
-const QASHprice = 30;
+//現在価格の変数宣言
+let BTCprice = 0;
+let ETHprice = 0;
+let XRPprice = 0;
+let LTCprice = 0;
+let BCHprice = 0;
+let NEMprice = 0;
+let MONAprice = 0;
+let ETCprice = 0;
+let LSKprice = 0;
+let FCTprice = 0;
+let QASHprice = 0;
 
 //余裕があれば事前にローディングさせておく。
 const BTCurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/BTCcard2.png';
@@ -109,17 +104,17 @@ const FCTurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/FCTcard.png'
 const QASHurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/QASHcard.png';
 
 //cryptoの要素のvalueに価格を渡すためまとめておく
-const BTCinfo = [BTCprice, BTCurl];
-const ETHinfo = [ETHprice, ETHurl];
-const XRPinfo = [XRPprice, XRPurl];
-const LTCinfo = [LTCprice, LTCurl];
-const BCHinfo = [BCHprice, BCHurl];
-const NEMinfo = [NEMprice, NEMurl];
-const MONAinfo = [MONAprice, MONAurl];
-const ETCinfo = [ETCprice, ETCurl];
-const LSKinfo = [LSKprice, LSKurl];
-const FCTinfo = [FCTprice, FCTurl];
-const QASHinfo = [QASHprice, QASHurl];
+let BTCinfo;
+let ETHinfo;
+let XRPinfo;
+let LTCinfo;
+let BCHinfo;
+let NEMinfo;
+let MONAinfo;
+let ETCinfo;
+let LSKinfo;
+let FCTinfo;
+let QASHinfo;
 
 const bitbankData = {
   //cryptsとfeeの配列の位置は連動させています
@@ -182,8 +177,86 @@ const rakutenData = {
   name: '楽天ウォレット',
   affiliate: 'https://www.rakuten-wallet.co.jp',
 }
+//本日の仮想通貨の価格
+///////////////////
+var catchCoinmarketPrice = [];
+var todayPrice = [];
 
-console.log(bitbankData.crypts);
+var getCryptoPrice = function(){
+  if(catchCoinmarketPrice.length < 22){
+      catchCoinmarketPrice = document.querySelectorAll("div.coinmarketcap-currency-widget > div > div > div > span");
+      setTimeout(getCryptoPrice, '1000');
+      return;
+    }
+
+  var match = /^\d+\.?\d{2}/;
+  var oddElement = [];
+  var textSplit = '';
+
+  for(i=0;catchCoinmarketPrice.length > i;i++){
+      if((i % 2) == 1){
+        oddElement.push(catchCoinmarketPrice[i]);
+      }
+  }
+    var elementTagRemove = oddElement.map(function(element){
+    var elementText = element.innerText;
+    var textRemove = elementText.replace(',', '');
+    var textSplit = match.exec(textRemove);
+    todayPrice.push(textSplit);
+  });
+
+    loadingInfo(todayPrice);
+
+    var loading  = document.getElementById('loading-crypts');
+    loading.classList.remove('loading');
+
+    var removeImg = document.getElementById('load-img');
+    removeImg.remove();
+
+    return todayPrice;
+}
+
+window.onload = getCryptoPrice();
+
+
+function loadingInfo(todayPrice){
+  BTCprice = todayPrice[0];
+  ETHprice = todayPrice[1];
+  XRPprice = todayPrice[2];
+  LTCprice = todayPrice[3];
+  BCHprice = todayPrice[4];
+  NEMprice = todayPrice[5];
+  MONAprice = todayPrice[6];
+  ETCprice = todayPrice[7];
+  LSKprice = todayPrice[8];
+  FCTprice = todayPrice[9];
+  QASHprice = todayPrice[10];
+
+  BTCinfo = [BTCprice, BTCurl];
+  ETHinfo = [ETHprice, ETHurl];
+  XRPinfo = [XRPprice, XRPurl];
+  LTCinfo = [LTCprice, LTCurl];
+  BCHinfo = [BCHprice, BCHurl];
+  NEMinfo = [NEMprice, NEMurl];
+  MONAinfo = [MONAprice, MONAurl];
+  ETCinfo = [ETCprice, ETCurl];
+  LSKinfo = [LSKprice, LSKurl];
+  FCTinfo = [FCTprice, FCTurl];
+  QASHinfo = [QASHprice, QASHurl];
+
+}
+
+//再読み込み時のリセット
+document.getElementById('fee-transaction').innerHTML = '';
+document.getElementById('now-price').innerHTML = '';
+document.getElementById('jpy-price').innerHTML = '';
+document.getElementById('caution1').innerHTML = '';
+document.getElementById('caution2').innerHTML = '';
+document.getElementById('xrp-caution').innerHTML = '';
+document.getElementById('affiliate').innerHTML = '';
+document.getElementById('liquid-caution').innerHTML = '';
+
+
 let exData;
 let renderCount;
 
@@ -318,10 +391,10 @@ function RenderResult(value){
   storedClass = document.getElementById(value[3]);
   storedClass.classList.add('crypto-selected');
 
-  console.log(value);
   document.getElementById('fee-transaction').innerHTML = exData.name + 'の送金手数料：' + value[0] + ' ' + value[1];
+  //value[2]はstringのためtoFixedがきかない？
   document.getElementById('now-price').innerHTML = value[1] + 'の現在価格：' + value[2] + '円';
-  document.getElementById('jpy-price').innerHTML = '日本円の送金手数料は ' + '<span style="color:#ff9156; font-size: 3.5rem; font-weight: bold">' + value[0] * value[2] + '円' + '</span>' +  'です';
+  document.getElementById('jpy-price').innerHTML = '日本円の送金手数料はおよそ ' + '<span style="color:#ff9156; font-size: 3.5rem; font-weight: bold">' + (value[0] * value[2]).toFixed(1) + '円' + '</span>' +  'です';
   document.getElementById('caution1').innerHTML = '※送金金額は関係なく一律で' + value[0] + value[1] + 'になります。';
   document.getElementById('caution2').innerHTML = '※価格はcoinmarketcapを参照しています。取引所間で微妙に異なります。';
 
@@ -331,8 +404,40 @@ function RenderResult(value){
     document.getElementById('xrp-caution').innerHTML = '';
   }
 
+  if(exData.name === 'Liquid by Quoine'){
+    document.getElementById('liquid-caution').innerHTML = 'Liquid by Quoineの場合はマイナー手数料が別に必要となります(トラフィックが混雑していなければ他の取引所よりも安くなりやすい)';
+  } else {
+    document.getElementById('liquid-caution').innerHTML = '';
+  }
+
   document.getElementById('affiliate').href = exData.affiliate;
   document.getElementById('affiliate').innerHTML = exData.name + 'の公式サイト';
+
+  TwitterBtn(value);
+
+  return;
+
 }
+
+function TwitterBtn(value){
+  //Twitterシェアボタンを生成する
+    //Twitterへのシェア内容
+  var ShareURL = `https://kusacurrency.com/post_lp/how-much-remittance/`;
+  var ShareText = '現在の' + exData.name + 'における' + value[1] + 'の送金手数料はおよそ' + (value[0] * value[2]).toFixed(1) + '円です';
+  var UserId = '@CryptoKusacoin';
+  var HashTags = '仮想通貨de送金手数料の計算機';
+  var ShareTwitter = 'https://twitter.com/intent/tweet?url='+encodeURIComponent(ShareURL)+'&text='+encodeURIComponent(ShareText)+'&hashtags='+encodeURIComponent(HashTags)+'&related='+encodeURIComponent(UserId);
+
+  var makeTwitterButton = document.createElement('a');
+
+  makeTwitterButton.id = ('twitter');
+  makeTwitterButton.href = (ShareTwitter);
+  makeTwitterButton.target = ('_blank');
+  makeTwitterButton.innerHTML = '結果をTwitterでシェアする';
+
+  // makeTwitterButton.classList.add('chart-description');
+  document.getElementById('twitter-btn').appendChild(makeTwitterButton);
+}
+
 </script>
 </html>
