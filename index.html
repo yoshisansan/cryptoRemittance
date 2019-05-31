@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=1">
+  <link rel="stylesheet" type="text/css" href="ready.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <title>仮想通貨de送金手数料の計算機</title>
+  <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+</head>
+<style>
+</style>
+<body>
+  <div class="initial">
+    <h1>仮想通貨de送金手数料の計算機</h1>
+    <div class="wrapper">
+      <h2>取引所を選択する</h2>
+        <div class="contents exchanges">
+          <button class="exchange" id="bitbank" onclick="RenderBtn(id)">bitbank</button>
+          <button class="exchange" id="bitFlyer" onclick="RenderBtn(id)">bitFlyer</button>
+          <button class="exchange" id="bitpoint" onclick="RenderBtn(id)">BITPOINT</button>
+          <button class="exchange" id="deCurret" onclick="RenderBtn(id)">DeCurret</button>
+          <button class="exchange" id="dmm" onclick="RenderBtn(id)">DMMビットコイン</button>
+          <button class="exchange" id="gmo" onclick="RenderBtn(id)">GMOコイン</button>
+          <button class="exchange" id="liquid" onclick="RenderBtn(id)">Liquid by Quoine</button>
+          <button class="exchange" id="coincheck" onclick="RenderBtn(id)">コインチェック</button>
+          <button class="exchange" id="taotao" onclick="RenderBtn(id)">タオタオ</button>
+          <button class="exchange" id="rakuten" onclick="RenderBtn(id)">楽天ウォレット</button>
+        </div>
+      <h2>仮想通貨を選択する</h2>
+        <div class="contents crypts" id="event-crypts">
+          <div class="crypto transparent-crypto"><img src="https://kusacurrency.com/wp-content/uploads/2019/05/BTCcard2.png" /></div>
+          <div class="crypto transparent-crypto"><img src="https://kusacurrency.com/wp-content/uploads/2019/05/ETHcard.png" /></div>
+        </div>
+      <h2>送金手数料の円換算</h2>
+        <div class="results">
+          <!-- 結果も結果の度に生成する -->
+          <p class="result" id="fee-transaction"></p>
+          <p class="result" id="now-price"></p>
+          <p class="result" id="jpy-price"></p>
+          <div class="cautions">
+            <p class="caution" id="caution1"></p>
+            <p class="caution" id="caution2"></p>
+            <p class="caution" id="xrp-caution"></p>
+          </div>
+          <a class="result" id="affiliate"></p>
+        </div>
+      <h2>アプリダウンロード不要！ホーム画面に追加でいつでも使える♪</h2>
+        <div class="description">
+          <img src="https://kusacurrency.com/wp-content/uploads/2019/05/calremittanceDescription.jpg"/>
+          <h3>iPhoneの場合</h3>
+          <p>iPhoneの場合はSafariの下のボタンから「ホーム画面に追加」を選択すればすぐにホーム画面に追加できます</p>
+        </div>
+        <div class="description">
+          <h3>Androidの場合</h3>
+          <p>Androidの場合はデバイスによって異なりますが基本的に①メニュー画面を開く、②「ホーム画面に追加」ボタンをタップするで行うことができます</p>
+        </div>
+      <h2>現在価格</h2>
+      <div class="now-price">
+        <div class="coinmarketcap-currency-widget" data-currencyid="1" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="1027" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="52" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="2" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="1831" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="1321" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="873" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="213" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="1214" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="1087" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
+        <div class="coinmarketcap-currency-widget" data-currencyid="2213" data-base="JPY" data-secondary="" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="JPY" data-statsticker="false"></div>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+//再読み込み時のリセット
+document.getElementById('fee-transaction').innerHTML = '';
+document.getElementById('now-price').innerHTML = '';
+document.getElementById('jpy-price').innerHTML = '';
+document.getElementById('caution1').innerHTML = '';
+document.getElementById('caution2').innerHTML = '';
+document.getElementById('xrp-caution').innerHTML = '';
+document.getElementById('affiliate').innerHTML = '';
+
+//現在の価格を取得する
+const BTCprice = 900000;
+const ETHprice = 30000;
+const XRPprice = 40;
+const LTCprice = 10000;
+const BCHprice = 30000;
+const NEMprice = 10;
+const MONAprice = 120;
+const ETCprice = 15000;
+const LSKprice = 220;
+const FCTprice = 2000;
+const QASHprice = 30;
+
+//余裕があれば事前にローディングさせておく。
+const BTCurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/BTCcard2.png';
+const ETHurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/ETHcard.png';
+const XRPurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/XRPcard.png';
+const LTCurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/LTCcard.png';
+const BCHurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/BCHcard.png';
+const NEMurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/NEMcard.png';
+const MONAurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/MONAcard.png';
+const ETCurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/ETCcard.png';
+const LSKurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/LSKcard.png';
+const FCTurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/FCTcard.png';
+const QASHurl = 'https://kusacurrency.com/wp-content/uploads/2019/05/QASHcard.png';
+
+//cryptoの要素のvalueに価格を渡すためまとめておく
+const BTCinfo = [BTCprice, BTCurl];
+const ETHinfo = [ETHprice, ETHurl];
+const XRPinfo = [XRPprice, XRPurl];
+const LTCinfo = [LTCprice, LTCurl];
+const BCHinfo = [BCHprice, BCHurl];
+const NEMinfo = [NEMprice, NEMurl];
+const MONAinfo = [MONAprice, MONAurl];
+const ETCinfo = [ETCprice, ETCurl];
+const LSKinfo = [LSKprice, LSKurl];
+const FCTinfo = [FCTprice, FCTurl];
+const QASHinfo = [QASHprice, QASHurl];
+
+const bitbankData = {
+  //cryptsとfeeの配列の位置は連動させています
+  crypts: ['BTC', 'ETH', 'XRP', 'LTC', 'BCH', 'MONA'],
+  fee: [0.001, 0.005, 0.15, 0.001, 0.001, 0.001],
+  name: 'bitbank',
+  affiliate: 'http://h.accesstrade.net/sp/cc?rk=0100lb4j00huqc',
+}
+const bitFlyerData = {
+  crypts: ['BTC', 'ETH', 'LTC', 'BCH', 'MONA', 'ETC', 'LSK'],
+  fee: [0.0004, 0.005, 0.001, 0.0002, 0, 0.005, 0.1],
+  name: 'bitFlyer',
+  affiliate: 'https://bitflyer.jp?bf=x54gthgf',
+}
+const bitpointData = {
+  crypts: ['BTC', 'ETH', 'XRP', 'LTC', 'BCH'],
+  fee: [0, 0, 0, 0, 0],
+  name: 'BITPOINT',
+  affiliate: 'https://www.bitpoint.co.jp/',
+}
+const deCurretData = {
+  crypts: ['BTC', 'ETH', 'XRP', 'LTC', 'BCH', 'MONA'],
+  fee: [0.0004, 0.005, 0.15, 0.001, 0.001, 0.001],
+  name: 'DeCurret',
+  affiliate: 'https://deCurret.com',
+}
+const dmmData = {
+  crypts: ['BTC', 'ETH'],
+  fee: [0, 0],
+  name: 'DMMビットコイン',
+  affiliate: 'http://h.accesstrade.net/sp/cc?rk=0100m40k00huqc',
+}
+const gmoData = {
+  crypts: ['BTC', 'ETH', 'XRP', 'LTC', 'BCH'],
+  fee: [0, 0, 0, 0, 0],
+  name: 'GMOコイン',
+  affiliate: 'http://h.accesstrade.net/sp/cc?rk=0100lhis00huqc',
+}
+const liquidData = {
+  crypts: ['BTC', 'ETH', 'XRP', 'BCH', 'QASH'],
+  fee: [0, 0, 0, 0, 0],
+  name: 'Liquid by Quoine',
+  affiliate: 'https://h.accesstrade.net/sp/cc?rk=0100lh4000huqc',
+}
+const coincheckData = {
+  crypts: ['BTC', 'ETH', 'XRP', 'LTC', 'BCH', 'XEM', 'ETC', 'LSK', 'FCT'],
+  fee: [0.001, 0.01, 0.15, 0.001, 0.001, 0.5, 0.01, 0.1, 0.1],
+  name: 'コインチェック',
+  affiliate: 'https://coincheck.com/?c=3NsfuOAXbWs',
+}
+const taotaoData = {
+  crypts: ['BTC', 'ETH'],
+  fee: [0, 0],
+  name: 'TAOTAO',
+  affiliate: 'https://taotao-ex.com',
+}
+const rakutenData = {
+  crypts: ['BTC', 'ETH', 'BCH'],
+  fee: [0.001, 0.01, 0.01],
+  name: '楽天ウォレット',
+  affiliate: 'https://www.rakuten-wallet.co.jp',
+}
+
+console.log(bitbankData.crypts);
+let exData;
+let renderCount;
+
+function RenderBtn(id){
+
+  //仮想通貨の子要素を消去して、送金手数料のinnerHTMLを空にする処理
+  renderCount = 0;
+
+  const crypto = document.getElementById('event-crypts');
+  let clone = crypto.cloneNode(false);
+  crypto.parentNode.replaceChild(clone, crypto);
+
+  document.getElementById('fee-transaction').innerHTML = '';
+  document.getElementById('now-price').innerHTML = '';
+  document.getElementById('jpy-price').innerHTML = '';
+  document.getElementById('caution1').innerHTML = '';
+  document.getElementById('caution2').innerHTML = '';
+  document.getElementById('xrp-caution').innerHTML = '';
+  document.getElementById('affiliate').innerHTML = '';
+
+  //クリックされた取引所のデータをオブジェクトを取得する
+  switch(id){
+    case 'bitbank':
+      exData = bitbankData;
+      break;
+    case 'bitFlyer':
+      exData = bitFlyerData;
+      break;
+    case 'bitpoint':
+      exData = bitpointData;
+      break;
+    case 'deCurret':
+      exData = deCurretData;
+      break;
+    case 'dmm':
+      exData = dmmData;
+      break;
+    case 'gmo':
+      exData = gmoData;
+      break;
+    case 'liquid':
+      exData = liquidData;
+      break;
+    case 'coincheck':
+      exData = coincheckData;
+      break;
+    case 'taotao':
+      exData = taotaoData;
+      break;
+    case 'rakuten':
+      exData = rakutenData;
+      break;
+
+      default:
+        console.log('データを取得できませんでした');
+        break;
+  }
+
+  CreateBtn(exData.crypts);
+
+}
+
+function CreateBtn(crypts){
+  crypts.forEach(function(crypto){
+    switch(crypto){
+      case 'BTC':
+        CreateElement(BTCinfo);
+        break;
+      case 'ETH':
+        CreateElement(ETHinfo);
+        break;
+      case 'XRP':
+        CreateElement(XRPinfo);
+        break;
+      case 'LTC':
+        CreateElement(LTCinfo);
+        break;
+      case 'BCH':
+        CreateElement(BCHinfo);
+        break;
+      case 'XEM':
+        CreateElement(NEMinfo);
+        break;
+      case 'MONA':
+        CreateElement(MONAinfo);
+        break;
+      case 'ETC':
+        CreateElement(ETCinfo);
+        break;
+      case 'LSK':
+        CreateElement(LSKinfo);
+        break;
+      case 'FCT':
+        CreateElement(FCTinfo);
+        break;
+      case 'QASH':
+        CreateElement(QASHinfo);
+        break;
+
+        default:
+        CreateElement(BTCinfo);
+    }
+  });
+}
+
+function CreateElement(CryptoInfo){
+
+  const cryptoElement = document.createElement('div');
+  const cryptoImg = document.createElement('img');
+
+  let cryptoId = 'insert-img' + renderCount;
+  let valueContent = [exData.fee[renderCount], exData.crypts[renderCount], CryptoInfo[0], cryptoId];
+  cryptoElement.id = cryptoId;
+  cryptoElement.value = valueContent;
+  cryptoElement.classList.add('crypto');
+  cryptoElement.setAttribute('onclick', 'RenderResult(value)');
+  document.getElementById('event-crypts').appendChild(cryptoElement);
+
+  cryptoImg.setAttribute('src', CryptoInfo[1]);
+  document.getElementById(cryptoId).appendChild(cryptoImg);
+
+  renderCount++;
+}
+
+let storedClass;
+function RenderResult(value){
+  //セレクトスタイルを削除&付与
+  if(storedClass){
+    storedClass.classList.remove('crypto-selected');
+  }
+
+  storedClass = document.getElementById(value[3]);
+  storedClass.classList.add('crypto-selected');
+
+  console.log(value);
+  document.getElementById('fee-transaction').innerHTML = exData.name + 'の送金手数料：' + value[0] + ' ' + value[1];
+  document.getElementById('now-price').innerHTML = value[1] + 'の現在価格：' + value[2] + '円';
+  document.getElementById('jpy-price').innerHTML = '日本円の送金手数料は ' + value[0] * value[2] + '円 です';
+  document.getElementById('caution1').innerHTML = '※送金金額は関係なく一律で' + value[0] + value[1] + 'になります。';
+  document.getElementById('caution2').innerHTML = '※価格はcoinmarketcapを参照しています。取引所間で微妙に異なります。';
+
+  if(value[1] === 'XRP'){
+    document.getElementById('xrp-caution').innerHTML = '※XRPは仕様上、初めての受取アドレスに対して20XRPのアクティベート手数料が自動で徴収されます。新規アドレスへの送金の際は注意が必要です';
+  } else {
+    document.getElementById('xrp-caution').innerHTML = '';
+  }
+
+  document.getElementById('affiliate').href = exData.affiliate;
+  document.getElementById('affiliate').innerHTML = exData.name + 'の公式サイト';
+}
+</script>
+</html>

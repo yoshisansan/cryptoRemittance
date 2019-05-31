@@ -1,0 +1,266 @@
+/* 初期化参考サイト http://html5doctor.com/html-5-reset-stylesheet/ */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video, .initial {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:62.5%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+ .initial .single-title, .page-title, .entry-title,
+ #content.lp-wrap .hentry header,
+ #main .article header,
+ .bgfull .footer, .footer.bg, .footer .inner,.entry-content p{
+   all: initial;
+   color: #3e3e3e;
+ }
+
+ .h_balloon .entry-content h2:after{
+ 	/* h2タグのオレンジの吹き出しを消す */
+ 	content: initial;
+  border-top: initial;
+ }
+
+ .results p{
+   inline-block;
+ }
+
+ .entry-content h2, .widgettitle{
+   background: initial;
+   color: initial;
+ }
+
+ h2 {
+ 	line-height: initial;
+ 	/* h2のfont-sizeが効かないので */
+ }
+ .entry-content h2{
+   box-shadow: initial;
+   padding: initial;
+   padding: 0.5rem 0.8rem;
+ }
+ #content.lp-wrap h3{
+   font-size: initial;
+   font-size: 2rem;
+ }
+body {
+    line-height:1;
+		color: #3e3e3e;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+.entry-content h2{
+
+}
+.entry-content h2::first-letter {
+
+}
+.h_balloon .entry-content h2:after{
+	/* h2タグのオレンジの吹き出しを消す */
+	content: initial;
+}
+
+.initial{
+  background-color: #fcfeff;
+  background-image:
+  radial-gradient(#ededed 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+h1{font-size: 3rem; font-weight: bold; margin: 2rem 1rem; line-height: 118%;}
+h2{font-size: 2.5rem; font-weight: bold; line-height: 118%; margin: 1rem 0 2rem 0;}
+h2::first-letter {
+  font-size: 3.8rem;
+	font-weight: bold;
+  color: #7172ac;
+}
+#content.lp-wrap h2{
+  font-size: 2.5rem; font-weight: bold; line-height: 118%; margin: 1rem 0 2rem 0;
+}
+#content.lp-wrap h2::first-letter{
+  font-size: 3.8rem;
+  font-weight: bold;
+  color: #7172ac;
+}
+
+.wrapper{
+  margin: 0 1rem;
+  /* max-width: 80rem; */
+}
+.wrapper h2{
+  margin-top: 2rem;
+}
+.contents{
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  max-width: 70rem;
+}
+.exchanges{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.exchange{
+  margin: 1.2rem;
+  line-height: 158%;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 2.5rem;
+  padding: 1rem;
+  background-color: transparent;
+  border: 2px solid #333333;
+  border-radius: 1rem;
+  color: #333333;
+  /* max-width: 80rem; */
+}
+.exchange:hover{
+  background-color: rgba(255, 241, 0, .2);
+}
+.crypts{
+  margin-top: 1rem;
+  /* max-width: 60rem; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.crypto{
+  font-size: 2rem;
+  cursor: pointer;
+  margin: 0 auto;
+  /* width: 30rem; */
+}
+.crypto img{
+  width: 25rem;
+}
+.crypto-selected{
+  border: 4px solid #aff;
+  border-radius: 2rem;
+}
+.crypto-selected img{
+  margin: -4px !important
+}
+@media only screen and (max-width: 767px)  {
+  .crypto img{
+    width: 15rem;
+  }
+}
+.transparent-crypto{
+  opacity: 0.4;
+}
+.results{
+  margin-top: 1rem;
+  /* width: 80rem; */
+}
+.results p{
+  font-size: 2rem;
+  line-height: 168%;
+  display: inline-block;
+}
+.results a{
+  font-size: 2rem;
+  line-height: 168%;
+}
+.result{
+}
+#jpy-price{
+  font-size: 3rem;
+}
+.cautions p{
+  font-size: 1.6rem;
+}
+.description{
+  margin: 1rem 0 2rem 0;
+
+}
+.description h3{
+  font-size: 2.2rem;
+  margin: 1rem 0;
+}
+.description p{
+  font-size: 1.8rem;
+  line-height: 138%;
+
+}
+.description img{
+  width: 100vw;
+}
