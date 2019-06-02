@@ -12,7 +12,6 @@
 </style>
 <body>
   <div class="initial">
-    <h1>仮想通貨de送金手数料の計算機</h1>
     <div class="wrapper">
     <div id="load-img"><img src="https://kusacurrency.com/wp-content/uploads/2019/05/gif-load.gif" /></div>
       <h2>取引所を選択する</h2>
@@ -57,6 +56,7 @@
         <div class="description">
           <h3>Androidの場合</h3>
           <p>Androidの場合はデバイスによって異なりますが基本的に①メニュー画面を開く、②「ホーム画面に追加」ボタンをタップするで行うことができます</p>
+          <h3><a href="https://kusacurrency.com/">ビットコインバーゲンのホーム画面へ移動する</a></h3>
         </div>
       <h2>現在価格</h2>
       <div class="now-price">
@@ -256,11 +256,20 @@ document.getElementById('xrp-caution').innerHTML = '';
 document.getElementById('affiliate').innerHTML = '';
 document.getElementById('liquid-caution').innerHTML = '';
 
+var twitterDelete = document.getElementById('twitter');
+ if(twitterDelete){twitterDelete.remove()};
 
 let exData;
 let renderCount;
-
+let exchangeSelect;
+///////////////////
+//取引所ボタンの処理//
+///////////////////
 function RenderBtn(id){
+
+  if(document.getElementById(id) === exchangeSelect){
+    return;
+  }
 
   //仮想通貨の子要素を消去して、送金手数料のinnerHTMLを空にする処理
   renderCount = 0;
@@ -276,6 +285,17 @@ function RenderBtn(id){
   document.getElementById('caution2').innerHTML = '';
   document.getElementById('xrp-caution').innerHTML = '';
   document.getElementById('affiliate').innerHTML = '';
+
+  var twitterCheck = document.getElementById('twitter')
+  if(twitterCheck){twitterCheck.remove();}
+
+  //セレクトスタイルを付与
+  if(exchangeSelect){
+    //前回のクラスリストを削除
+    exchangeSelect.classList.remove('exchange-selected');
+  }
+  exchangeSelect = document.getElementById(id);
+  exchangeSelect.classList.add('exchange-selected');
 
   //クリックされた取引所のデータをオブジェクトを取得する
   switch(id){
@@ -381,8 +401,16 @@ function CreateElement(CryptoInfo){
   renderCount++;
 }
 
+
+///////////////////
+///銘柄ボタンの処理///
+///////////////////
 let storedClass;
 function RenderResult(value){
+
+  var twitterDelete = document.getElementById('twitter');
+  if(twitterDelete){twitterDelete.remove()};
+
   //セレクトスタイルを削除&付与
   if(storedClass){
     storedClass.classList.remove('crypto-selected');

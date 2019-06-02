@@ -10,7 +10,7 @@ dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section, summary,
+header, hgroup, menu, nav, section, summary,
 time, mark, audio, video, .initial {
     margin:0;
     padding:0;
@@ -21,12 +21,16 @@ time, mark, audio, video, .initial {
     background:transparent;
 }
 
- .initial .single-title, .page-title, .entry-title,
+ /* .initial .single-title, .page-title, .entry-title,
  #content.lp-wrap .hentry header,
- #main .article header,
- .bgfull .footer, .footer.bg, .footer .inner,.entry-content p{
+ #main .article header, */
+ .entry-content p{
    all: initial;
    color: #3e3e3e;
+ }
+ .entry-content p{
+   display: block;
+   margin: 1rem;
  }
 
  .h_balloon .entry-content h2:after{
@@ -36,9 +40,16 @@ time, mark, audio, video, .initial {
  }
 
  .results p{
-   inline-block;
+   display: block;
  }
-
+ #content.lp-wrap .hentry header .page-title{
+   font-size: 3.2rem;
+ }
+ @media only screen and (max-width: 767px)  {
+   #content.lp-wrap .hentry header .page-title{
+     font-size: 2.8rem;
+   }
+ }
  .entry-content h2, .widgettitle{
    background: initial;
    color: initial;
@@ -46,7 +57,9 @@ time, mark, audio, video, .initial {
 .entry-content img{
   /* 銘柄の画像のマージンをリセット */
   margin: initial;
+  margin: 0 auto;
 }
+
  h2 {
  	line-height: initial;
  	/* h2のfont-sizeが効かないので */
@@ -63,6 +76,20 @@ time, mark, audio, video, .initial {
 body {
     line-height:1;
 		color: #3e3e3e;
+
+}
+.single #main .article{
+  background-color: #fcfeff;
+  background-image:
+  radial-gradient(#ededed 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+/* #content.lp-wrap .hentry header, */
+/* .initial .single-title, */
+/* .page-title, .entry-title, */
+/* #main .article header,  */
+.entry-content p{
+  margin: 0 0 0 1rem;
 }
 
 article,aside,details,figcaption,figure,
@@ -87,7 +114,7 @@ q:before, q:after {
 a {
     margin:0;
     padding:0;
-    font-size:100%;
+    font-size:1.8rem;
     vertical-align:baseline;
     background:transparent;
 }
@@ -157,7 +184,7 @@ h2{font-size: 2.5rem; font-weight: bold; line-height: 118%; margin: 1rem 0 2rem 
 h2::first-letter {
   font-size: 3.8rem;
 	font-weight: bold;
-  color: #7172ac;
+  color: #795442;
 }
 #content.lp-wrap h2{
   font-size: 2.5rem; font-weight: bold; line-height: 118%; margin: 1rem 0 2rem 0;
@@ -165,7 +192,7 @@ h2::first-letter {
 #content.lp-wrap h2::first-letter{
   font-size: 3.8rem;
   font-weight: bold;
-  color: #7172ac;
+  color: #795442;
 }
 
 .wrapper{
@@ -198,6 +225,9 @@ h2::first-letter {
   /* max-width: 80rem; */
 }
 .exchange:hover{
+  background-color: rgba(255, 241, 0, .2);
+}
+.exchange-selected{
   background-color: rgba(255, 241, 0, .2);
 }
 .crypts{
@@ -240,8 +270,8 @@ h2::first-letter {
 .results p{
   font-size: 2rem;
   line-height: 168%;
-  margin: 0.6rem 0;
-  display: inline-block;
+  margin: .6rem 0 .6rem 1rem;
+  display: block;
 }
 .results a{
   font-size: 2rem;
@@ -269,9 +299,16 @@ h2::first-letter {
 
 }
 .description img{
-  width: 100vw;
+  width: 60vw;
 }
-
+@media only screen and (max-width: 767px)  {
+  .description img{
+    width: 100vw;
+  }
+}
+.footer #footer-bottom{
+  background: #dca54f;
+}
 
 /* Twitterボタン */
 #twitter{
